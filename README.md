@@ -1,2 +1,2 @@
-# localebot
+# locale-automator
 Localization automator bot
