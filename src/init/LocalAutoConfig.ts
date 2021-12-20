@@ -28,6 +28,7 @@ export class LocalAutoConfig{
                 } else{
                     console.log(this.confJsonPath)
                 }
+                this.saveJson([])
             });
             console.log(`config saved`);
         } else {
@@ -45,7 +46,12 @@ export class LocalAutoConfig{
             return JSON.parse(conf);
     }
 
-    public hasConfig(){
-        console.log('works');
+    public saveJson(data:any){
+        let output_file = path.join(__dirname, '../')+"locale_strings.json";//path.join(configs.output_dir, '/locale_strings.json')
+        fs.writeFile(output_file, JSON.stringify(data), (err) => {
+            if (err) {
+                console.log(err);
+            } 
+        });
     }
 }

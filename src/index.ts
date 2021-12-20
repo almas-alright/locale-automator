@@ -20,7 +20,8 @@ const program = new Command();
 
     program.command('walk').action(() => { 
         // fc.getChangedFiles() 
-        sc.readEach();
+        // sc.readEach();
+        sc.checkFiles()
     });
 
     program.parse();

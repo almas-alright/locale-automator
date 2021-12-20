@@ -25,9 +25,9 @@ export class FileCollector{
         let statusMixed =  await repository.then(function(repo) { return repo.getStatus() })
             statusMixed.forEach((file) => {
                 statuses.push({"file" : file.path(), "status": this.statusToText(file)})
-                console.log(file.path() + " " + this.statusToText(file));
+                // console.log(file.path() + " " + this.statusToText(file));
             });
-            console.log(statuses);
+            return statuses;
     }
 
     private statusToText(status:any) {
