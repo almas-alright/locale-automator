@@ -12,4 +12,4 @@ Localization automator bot
 ## usage
 
 - initialize
-    - localize_au
+    - localize_auto init
