@@ -1,0 +1,26 @@
+{
+  "name": "locale-automator",
+  "version": "1.0.0",
+  "description": "Given a software project code base which needs to have multiple locale support,",
+  "main": "src/index.ts",
+  "bin": {
+    "locale-auto": "dist/index.js"
+  },
+  "scripts": {
+    "test": "yarn test",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn src/index.ts"
+  },
+  "author": "we",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.13",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@types/readline-sync": "^1.4.4",
+    "commander": "^8.3.0",
+    "readline-sync": "^1.4.10"
+  }
+}
