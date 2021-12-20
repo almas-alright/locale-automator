@@ -3,10 +3,11 @@
 import { Command } from 'commander'
 import { LocalAutoConfig } from "./init/LocalAutoConfig";
 import { FileCollector } from './traversing/FileCollector';
-
+import { StringCollector } from './traversing/StringCollector';
 
 const l_init = new LocalAutoConfig();
 const fc = new FileCollector();
+const sc = new StringCollector();
 
 const program = new Command();
     program
@@ -17,7 +18,10 @@ const program = new Command();
         l_init.init()
     });
 
-    program.command('walk').action(() => { fc.getChangedFiles() });
+    program.command('walk').action(() => { 
+        // fc.getChangedFiles() 
+        sc.readEach();
+    });
 
     program.parse();
     const options = program.opts();

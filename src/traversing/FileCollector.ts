@@ -4,7 +4,7 @@ import nodegit from 'nodegit'
 import { LocalAutoConfig } from "../init/LocalAutoConfig";
 
 export class FileCollector{
-    private files = [];
+
     private lac = new LocalAutoConfig();
 
     //not in use
@@ -21,6 +21,7 @@ export class FileCollector{
         let configs = this.lac.getConfig();
         let repoPath = path.resolve(configs.source_dir);
         let repository = nodegit.Repository.open(repoPath);
+        //    if((await repository).isEmpty()){ process.exit(1) }
         let statusMixed =  await repository.then(function(repo) { return repo.getStatus() })
             statusMixed.forEach((file) => {
                 statuses.push({"file" : file.path(), "status": this.statusToText(file)})
@@ -29,7 +30,7 @@ export class FileCollector{
             console.log(statuses);
     }
 
-    public statusToText(status:any) {
+    private statusToText(status:any) {
         var words = [];
         if (status.isNew()) { words.push("NEW"); }
         if (status.isModified()) { words.push("MODIFIED"); }

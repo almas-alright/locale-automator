@@ -19,9 +19,11 @@
     "typescript": "^4.5.4"
   },
   "dependencies": {
+    "@types/event-stream": "^4.0.0",
     "@types/nodegit": "^0.27.7",
     "@types/readline-sync": "^1.4.4",
     "commander": "^8.3.0",
+    "event-stream": "^4.0.1",
     "nodegit": "^0.27.0",
     "readline-sync": "^1.4.10"
   }
