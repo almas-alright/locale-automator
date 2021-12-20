@@ -17,7 +17,7 @@ const program = new Command();
         l_init.init()
     });
 
-    program.command('walk').action(() => { fc.getFiles() });
+    program.command('walk').action(() => { fc.getChangedFiles() });
 
     program.parse();
     const options = program.opts();
