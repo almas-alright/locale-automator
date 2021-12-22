@@ -8,6 +8,7 @@ export class StringCollector{
     
     private fc =  new FileCollector();
     private configs = config();
+    
     private async readEach(fliePath:any){
         let fp1 = path.join(this.configs.source_dir, fliePath);
             fp1 = path.resolve(fp1);
@@ -16,7 +17,7 @@ export class StringCollector{
         let fileStream = await fs.createReadStream(fp1).pipe(es.split())
         let linesInFile = await fileStream.pipe(es.mapSync((line: any) =>{
             fileStream.pause();
-            if(line.includes("i18n.t")){
+            if(line.includes(this.configs.search)){
                 message.write(line.trim().match(/\(([^)]+)\)/)[1]+",\n")
                 lineNr += 1;
             }
