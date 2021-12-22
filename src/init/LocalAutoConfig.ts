@@ -1,6 +1,6 @@
 
 import readlineSync from 'readline-sync';
-import { initJsonPath, localeJsonPath, saveJson} from "./commons"
+import { initJsonPath, localeJsonPath, localeCsvPath, saveJson} from "./commons"
 
 export class LocalAutoConfig{
     
@@ -22,7 +22,7 @@ export class LocalAutoConfig{
     private saveInit(configs: any){
         if(configs.source !== -1){
             saveJson(configs,initJsonPath)
-            saveJson([],localeJsonPath)
+            saveJson([],localeCsvPath)
             console.log(`config saved`);
         } else {
             console.log(`not saved ... you did not select any source`);

@@ -1,26 +1,23 @@
 import fs from 'fs';
 import es from 'event-stream';
 import path from 'path';
-import { localeJsonPath, config, saveJson} from "../init/commons"
+import { localeCsvPath, config, saveJson} from "../init/commons"
 import { FileCollector } from './FileCollector';
 
 export class StringCollector{
     
     private fc =  new FileCollector();
-
+    private configs = config();
     private async readEach(fliePath:any){
-        let configs = config();
-        let data = await fs.readFileSync(localeJsonPath,'utf8')
-        let lines: String[] = JSON.parse(data);
-        let fp1 = path.join(configs.source_dir, fliePath);
+        let fp1 = path.join(this.configs.source_dir, fliePath);
             fp1 = path.resolve(fp1);
         let lineNr = 0;
-
+        const message = fs.createWriteStream(localeCsvPath, { 'flags': 'a', 'encoding': 'utf8'});
         let fileStream = await fs.createReadStream(fp1).pipe(es.split())
         let linesInFile = await fileStream.pipe(es.mapSync((line: any) =>{
             fileStream.pause();
             if(line.includes("i18n.t")){
-                lines.push(line.trim().match(/\(([^)]+)\)/)[1]);
+                message.write(line.trim().match(/\(([^)]+)\)/)[1]+",\n")
                 lineNr += 1;
             }
             fileStream.resume();
@@ -29,7 +26,7 @@ export class StringCollector{
             console.log('Error while reading file.', err);
         })
         .on('end', () =>{
-            saveJson(lines, localeJsonPath)
+            message.close();
             console.log(lineNr+' string found in '+fliePath)
         }));
         

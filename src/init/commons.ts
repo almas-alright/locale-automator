@@ -2,7 +2,8 @@ import fs from "fs";
 import path from "path";
 
 export const initJsonPath = path.join(__dirname, '../')+"locale_auto.json";
-export const localeJsonPath = path.join(__dirname, '../')+"locale_strings.json";;
+export const localeJsonPath = path.join(__dirname, '../')+"locale_strings.json";
+export const localeCsvPath = path.join(__dirname, '../')+"locale_strings.csv";
 
 export const config = () => {
     if(!fs.existsSync(initJsonPath)){
