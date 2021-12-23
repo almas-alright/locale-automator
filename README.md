@@ -12,4 +12,5 @@ Localization automator bot
 ## usage
 
 - initialize
-    - localize_auto init
+    - locale-auto init
+- 
